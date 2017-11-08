@@ -3,7 +3,6 @@ Requires   : Fusion 9.0.1+
 Optional   : cjson
 Created by : Cédric Duriau         [duriau.cedric@live.be]
              Kristof Indeherberge  [xmnr0x23@gmail.com]
-             Andrew Hazelden       [andrew@andrewhazelden.com]
 Version    : 1.2.0-beta7
 --]]
 
