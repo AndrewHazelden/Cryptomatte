@@ -194,7 +194,6 @@ function cryptomatte_test__get_absolute_path()
     local pathsep = package.config:sub(1,1)
     if pathsep == "/" then
         local tmp_dir = os.getenv("TMPDIR")
-        local abs_tmp_path = ""
         local format_str = ""
         if tmp_dir == "/tmp" then
             -- linux
@@ -203,7 +202,7 @@ function cryptomatte_test__get_absolute_path()
             -- darwin
             format_str = "%s%s"
         end
-        abs_tmp_path = string.format(format_str, tmp_dir, "test.exr")
+        local abs_tmp_path = string.format(format_str, tmp_dir, "test.exr")
         assert_equal(r3, abs_tmp_path)
     else
         assert_equal(r3, "C:\\Temp\\test.exr")
