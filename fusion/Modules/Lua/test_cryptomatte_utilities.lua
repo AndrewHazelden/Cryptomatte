@@ -191,21 +191,15 @@ function cryptomatte_test__get_absolute_path()
 
     assert_equal(r1, "/tmp/test.exr")
     assert_equal(r2, "C:/Temp/test.exr")
-    local pathsep = package.config:sub(1,1)
-    if pathsep == "/" then
-        local tmp_dir = os.getenv("TMPDIR")
-        local format_str = ""
-        if tmp_dir == "/tmp" then
-            -- linux
-            format_str = "%s/%s"
-        else
-            -- darwin
-            format_str = "%s%s"
-        end
-        local abs_tmp_path = string.format(format_str, tmp_dir, "test.exr")
-        assert_equal(r3, abs_tmp_path)
-    else
+
+    if jit.os == "Windows" then
         assert_equal(r3, "C:\\Temp\\test.exr")
+    elseif jit.os == "Linux" then
+        assert_equal(r3, "/tmp/test.exr")
+    elseif jit.os == "OSX" then
+        local tmp_dir = os.getenv("TMPDIR")
+        local abs_tmp_path = string.format("%s%s", tmp_dir, "test.exr")
+        assert_equal(r3, abs_tmp_path)
     end
 end
 
